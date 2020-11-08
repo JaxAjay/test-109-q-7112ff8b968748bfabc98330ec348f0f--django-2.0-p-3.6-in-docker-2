@@ -13,12 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url 
 from django.contrib import admin
 from restapi.views import *
-
+from django.urls import path
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'', index),
+    url(r'^index', index),
+    url(r'^api/v1/driver/register/',driverRegister , name = "register"),
+    path('api/v1/driver/<int:driver_id>/sendLocation/' , shareLocation , name= "share_location"),
+    path('api/v1/passenger/available_cabs/',getCabs,name = 'get_cabs'),
 ]
